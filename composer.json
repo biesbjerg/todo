@@ -15,6 +15,8 @@
         "cakephp/bake": "^2.0.3",
         "cakephp/cakephp-codesniffer": "~4.2.0",
         "cakephp/debug_kit": "^4.1",
+        "captainhook/captainhook": "^5.3",
+        "captainhook/plugin-composer": "^5.2",
         "dereuromark/cakephp-ide-helper": "^1.7",
         "josegonzalez/dotenv": "^3.2",
         "phpunit/phpunit": "~8.5.0",
@@ -44,7 +46,7 @@
             "@test",
             "@cs-check"
         ],
-        "cs-check": "phpcs --colors -p  src/ tests/",
+        "cs-check": "phpcs --colors -p src/ tests/",
         "cs-fix": "phpcbf --colors -p src/ tests/",
         "stan": "phpstan analyse src/",
         "test": "phpunit --colors=always"

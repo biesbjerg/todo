@@ -64,7 +64,7 @@ class TodoItemsTable extends Table
     }
 
     /**
-     * Scope todo item to specified todo list
+     * Scope todo item to specified todo list.
      *
      * @return bool
      */

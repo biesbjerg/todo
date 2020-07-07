@@ -42,6 +42,7 @@ class TodoListsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Muffin/Slug.Slug');
 
         $this->hasMany('TodoItems', [
             'foreignKey' => 'todo_list_id',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "484fa7575a061a44d51e51635e9214ad",
+    "content-hash": "ec6d5ceef71e260a4c215304d76da754",
     "packages": [
         {
             "name": "aura/intl",
@@ -632,6 +632,64 @@
                 "php mobile detect"
             ],
             "time": "2019-09-18T18:44:20+00:00"
+        },
+        {
+            "name": "muffin/slug",
+            "version": "2.0.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UseMuffin/Slug.git",
+                "reference": "cfa5a55f9f9ddedb42400104cfa192eb0a810872"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UseMuffin/Slug/zipball/cfa5a55f9f9ddedb42400104cfa192eb0a810872",
+                "reference": "cfa5a55f9f9ddedb42400104cfa192eb0a810872",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/orm": "^4.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^4.0",
+                "cocur/slugify": "^1.2",
+                "phpunit/phpunit": "~8.5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Muffin\\Slug\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/usemuffin/slug/graphs/contributors"
+                }
+            ],
+            "description": "Slugging support for CakePHP ORM",
+            "homepage": "https://github.com/usemuffin/slug",
+            "keywords": [
+                "cakephp",
+                "muffin",
+                "orm",
+                "slug"
+            ],
+            "time": "2019-12-18T14:45:44+00:00"
         },
         {
             "name": "psr/container",
@@ -5457,6 +5515,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "muffin/slug": 10,
         "psy/psysh": 0
     },
     "prefer-stable": true,

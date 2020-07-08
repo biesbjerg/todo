@@ -41,6 +41,10 @@ class Application extends BaseApplication
      */
     public function bootstrap(): void
     {
+        $this->addPlugin('BootstrapUI');
+
+        $this->addPlugin('Cake/TwigView');
+
         $this->addPlugin('Muffin/Slug');
 
         // Call parent to load bootstrap from files.

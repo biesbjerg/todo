@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28797f4f4b0f9eb0f29dfd24ebaf17ee",
+    "content-hash": "964b61f1d280bff548d6f144612a08bf",
     "packages": [
         {
             "name": "aura/intl",
@@ -462,6 +462,57 @@
                 }
             ],
             "time": "2020-04-08T08:27:21+00:00"
+        },
+        {
+            "name": "friendsofcake/bootstrap-ui",
+            "version": "3.0.0-beta5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfCake/bootstrap-ui.git",
+                "reference": "a47b7fe484a2a5031b3316da16773323d7892ba8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/a47b7fe484a2a5031b3316da16773323d7892ba8",
+                "reference": "a47b7fe484a2a5031b3316da16773323d7892ba8",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0"
+            },
+            "require-dev": {
+                "cakephp/bake": "^2.1",
+                "cakephp/cakephp-codesniffer": "^4.1",
+                "phpunit/phpunit": "~8.5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "BootstrapUI\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/friendsofcake/bootstrap-ui/graphs/contributors"
+                }
+            ],
+            "description": "Bootstrap support for CakePHP",
+            "homepage": "http://github.com/friendsofcake/bootstrap-ui",
+            "keywords": [
+                "bootstrap",
+                "cakephp"
+            ],
+            "time": "2020-06-17T12:53:45+00:00"
         },
         {
             "name": "jasny/twig-extensions",
@@ -2261,16 +2312,16 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v3.4.1",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
+                "reference": "7a6da5e3e7ad7c749dde806546a35d4d4259d965"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
-                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/7a6da5e3e7ad7c749dde806546a35d4d4259d965",
+                "reference": "7a6da5e3e7ad7c749dde806546a35d4d4259d965",
                 "shasum": ""
             },
             "replace": {
@@ -2279,7 +2330,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.4.x-dev"
+                    "dev-master": "3.3.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2288,12 +2339,12 @@
             ],
             "authors": [
                 {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
-                },
-                {
                     "name": "Mark Otto",
                     "email": "markdotto@gmail.com"
+                },
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
                 }
             ],
             "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
@@ -2303,12 +2354,18 @@
                 "css",
                 "framework",
                 "front-end",
-                "less",
                 "mobile-first",
                 "responsive",
+                "sass",
                 "web"
             ],
-            "time": "2019-02-13T15:55:38+00:00"
+            "funding": [
+                {
+                    "url": "https://opencollective.com/bootstrap",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-05-12T17:44:42+00:00"
         },
         {
             "name": "twig/markdown-extra",
@@ -5608,6 +5665,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "friendsofcake/bootstrap-ui": 10,
         "muffin/slug": 10,
         "psy/psysh": 0
     },

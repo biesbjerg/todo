@@ -11,9 +11,10 @@
         "cakephp/plugin-installer": "^1.2",
         "cakephp/twig-view": "^1.0",
         "components/jquery": "^3.5",
+        "friendsofcake/bootstrap-ui": "3.0.0-beta5",
         "mobiledetect/mobiledetectlib": "^2.8",
         "muffin/slug": "2.0.0-beta",
-        "twbs/bootstrap": "v3.4.1"
+        "twbs/bootstrap": "^4.5"
     },
     "require-dev": {
         "cakephp/bake": "^2.0.3",

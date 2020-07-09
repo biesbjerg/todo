@@ -42,7 +42,7 @@ class TodoListsController extends AppController
             ]
         ]);
 
-        // Check todo list is valid and being accessed via current slug
+        // Check todo list is being accessed via correct slug
         if ($todoList->slug !== $slug) {
             return $this->redirect([
                 '_name' => 'view_todo_items',

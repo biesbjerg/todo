@@ -51,8 +51,8 @@
             "@test",
             "@cs-check"
         ],
-        "cs-check": "phpcs --colors -p src/ tests/",
-        "cs-fix": "phpcbf --colors -p src/ tests/",
+        "cs-check": "phpcs --standard=PSR2 --colors -p src/ tests/",
+        "cs-fix": "phpcbf --standard=PSR2 --colors -p src/ tests/",
         "stan": "phpstan analyse src/",
         "test": "phpunit --colors=always"
     },

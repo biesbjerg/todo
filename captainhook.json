@@ -16,7 +16,7 @@
                 "conditions": []
             },
             {
-                "action": "vendor/bin/phpcs --warning-severity=0 --colors {$STAGED_FILES|of-type:php}",
+                "action": "vendor/bin/phpcs --standard=PSR2 --warning-severity=0 --colors {$STAGED_FILES|of-type:php}",
                 "options": [],
                 "conditions": [
                     {

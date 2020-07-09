@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            {{ helper_Form_create(todoList) }}
+            <fieldset>
+                <legend>{{ __('Edit list') }}</legend>
+                {{ helper_Form_control(__('title')) }}
+                {{ helper_Form_control(__('color'), {'type': 'color'}) }}
+            </fieldset>
+            {{ helper_Form_button(__('Submit')) }}
+            {{ helper_Form_end() }}
+        </div>
+    </div>
+</div>

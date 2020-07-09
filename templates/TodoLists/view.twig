@@ -1,0 +1,104 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>{{ todoList.title }}</h1>
+            <div class="actions mt-4 mb-3">
+                {{
+                    helper_Html_link(__('+ Add item'), {
+                        '_name': 'add_todo_item'
+                    }, {
+                        'class': ['btn', 'btn-primary']
+                    })
+                }}
+                {{
+                    helper_Html_link(__('Edit'), {
+                        '_name': 'edit_todo_list',
+                        'list_id': todoList.id,
+                        'slug': todoList.slug
+                    }, {
+                        'class': ['btn', 'btn-link', 'btn-sm', 'text-secondary']
+                    })
+                }}
+                {{
+                    helper_Form_postLink(__('Delete'), {
+                        'controller': 'TodoLists',
+                        'action': 'delete',
+                        '0': todoList.id
+                    }, {
+                        'class': ['btn', 'btn-link', 'btn-sm', 'text-danger'],
+                        'confirm': __('Are you sure you want to delete list?')
+                    })
+                }}
+            </div>
+
+            {% for todoItem in todoList.todo_items %}
+                <div class="row flex-nowrap py-2 border-bottom">
+                    <div class="col-auto pr-0">
+                        {{
+                            helper_Form_create(todoItem, {
+                                'class': 'submit-on-change',
+                                'url': {
+                                    'controller': 'TodoItems',
+                                    'action': 'updateIsCompleted',
+                                    '0': todoItem.id
+                                }
+                            })
+                        }}
+                        {{ helper_Form_checkbox('is_completed') }}
+                        {{ helper_Form_end() }}
+                    </div>
+                    <div class="col">
+                        <div style="text-indent: {{ todoItem.level }}em">
+                            {% if todoItem.is_completed %}
+                                <del>{{ todoItem.title }}</del>
+                            {% else %}
+                                {{ todoItem.title }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col text-right">
+                        {{
+                            helper_Html_link(__('Edit'), {
+                                'controller': 'TodoItems',
+                                'action': 'edit',
+                                'item_id': todoItem.id
+                            }, {
+                                'class': ['btn', 'btn-link', 'btn-sm']
+                            })
+                        }}
+                        {{
+                            helper_Form_postLink(__('Up'), {
+                                'controller': 'TodoItems',
+                                'action': 'moveUp',
+                                '0': todoItem.id
+                            }, {
+                                'class': ['btn', 'btn-link', 'btn-sm', 'text-secondary']
+                            })
+                        }}
+                        {{
+                            helper_Form_postLink(__('Down'), {
+                                'controller': 'TodoItems',
+                                'action': 'moveDown',
+                                '0': todoItem.id
+                            }, {
+                                'class': ['btn', 'btn-link', 'btn-sm', 'text-secondary']
+                            })
+                        }}
+                        {{
+                            helper_Form_postLink(__('Delete'), {
+                                'controller': 'TodoItems',
+                                'action': 'delete',
+                                '0': todoItem.id
+                            }, {
+                                'confirm': __('Are you sure you want to delete # {0}?', todoItem.id),
+                                'class': ['btn', 'btn-link', 'btn-sm', 'text-danger']
+                            })
+                        }}
+                    </div>
+                </div>
+            {% else %}
+                <p>{{ __('List has no items yet...') }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

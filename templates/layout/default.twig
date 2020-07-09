@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{ helper_Html_charset() }}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ fetch('title') }}</title>
+    {{ helper_Html_meta('icon') }}
+
+    {{
+        helper_Html_css([
+            '/vendor/bootstrap/css/bootstrap.min',
+            'sidebar',
+            'default'
+        ])
+    }}
+
+    {{ fetch ('meta') }}
+    {{ fetch ('css') }}
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+        <button class="navbar-toggler sidebar-toggle" type="button" aria-label="Toggle sidebar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="/">{{ __('Todo') }}</a>
+    </nav>
+    <div id="wrapper">
+        <!-- Todo Lists Sidebar -->
+        <aside id="sidebar-wrapper" class="bg-light border-right">
+            <nav class="todo-collections">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">My Day</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active rounded-0">Planned</a>
+                    </li>
+                </ul>
+            </nav>
+            <hr class="mx-3 my-2">
+            <nav class="todo-lists">
+                {{ cell('TodoLists', [_view.request.getParam('list_id')]) }}
+                {{
+                    helper_Html_link(__('+ Add list'), {
+                        '_name': 'add_todo_list'
+                    }, {
+                        'class': ['btn', 'btn-link', 'btn-sm', 'mx-2', 'my-2']
+                    })
+                }}
+            </nav>
+        </aside>
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="p-2">
+            {{ helper_Flash_render() }}
+            {{ fetch('content') }}
+        </div>
+    </div>
+
+    {{
+        helper_Html_script([
+            '/vendor/jquery/jquery.min',
+            '/vendor/bootstrap/js/bootstrap.min',
+            'default'
+        ], {'block': true})
+    }}
+    {{ fetch ('script') }}
+
+</body>
+</html>

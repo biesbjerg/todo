@@ -16,7 +16,8 @@ declare(strict_types=1);
 namespace App\View;
 
 use BootstrapUI\View\UIViewTrait;
-use Cake\View\View;
+use Cake\Core\Configure;
+use Cake\TwigView\View\TwigView;
 
 /**
  * Application View
@@ -25,7 +26,7 @@ use Cake\View\View;
  *
  * @link https://book.cakephp.org/4/en/views.html#the-app-view
  */
-class AppView extends View
+class AppView extends TwigView
 {
     use UIViewTrait;
 
@@ -40,8 +41,13 @@ class AppView extends View
      */
     public function initialize(): void
     {
+        $this->setConfig('environment', [
+            'autoescape' => 'html'
+        ]);
         $this->initializeUI([
             'layout' => false,
         ]);
+
+        parent::initialize();
     }
 }

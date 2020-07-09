@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ fetch('title') }}</title>
     {{ helper_Html_meta('icon') }}
-
     {{
         helper_Html_css([
             '/vendor/bootstrap/css/bootstrap.min',
@@ -13,10 +12,8 @@
             'default'
         ])
     }}
-
     {{ fetch ('meta') }}
     {{ fetch ('css') }}
-
 </head>
 <body>
 
@@ -26,11 +23,12 @@
         </button>
         <a class="navbar-brand" href="/">{{ __('Todo') }}</a>
     </nav>
+
     <div id="wrapper">
         <!-- Todo Lists Sidebar -->
         <aside id="sidebar-wrapper" class="bg-light border-right">
-            <nav class="todo-collections">
-                {{ cell('TodoCollections', [_view.request.getParam('action')]) }}
+            <nav class="dynamic-todo-lists">
+                {{ cell('DynamicTodoLists', [_view.request.getParam('action')]) }}
             </nav>
             <hr class="mx-3 my-2">
             <nav class="todo-lists">
@@ -44,6 +42,7 @@
                 }}
             </nav>
         </aside>
+
         <!-- Page Content -->
         <div id="page-content-wrapper" class="p-2">
             {{ helper_Flash_render() }}

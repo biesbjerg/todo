@@ -1,0 +1,23 @@
+<ul class="nav nav-pills flex-column">
+{% for todoList in todoLists %}
+    <li class="nav-item">
+        {% set itemCountBadge %}
+            <span class="badge badge-pill float-right m-1">
+                {{ todoList.incomplete_item_count }}
+            </span>
+        {% endset %}
+        {{
+            helper_Html_link(todoList.title|e ~ itemCountBadge, {
+                '_name': todoList.url
+            }, {
+                'escape': false,
+                'class': [
+                    'nav-link',
+                    'rounded-0',
+                    todoList.id == activeListId ? 'active'
+                ]
+            })
+        }}
+    </li>
+{% endfor %}
+</ul>

@@ -42,7 +42,9 @@ class TodoListsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Muffin/Slug.Slug');
+        $this->addBehavior('Muffin/Slug.Slug', [
+            'onUpdate' => true
+        ]);
 
         $this->hasMany('TodoItems', [
             'foreignKey' => 'todo_list_id',
@@ -66,11 +68,6 @@ class TodoListsTable extends Table
             ->maxLength('title', 255)
             ->requirePresence('title', 'create')
             ->notEmptyString('title');
-
-        $validator
-            ->scalar('notes')
-            ->maxLength('notes', 3000)
-            ->allowEmptyString('notes');
 
         $validator
             ->scalar('color')

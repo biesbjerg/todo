@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Model\Table;
 
 use Cake\Datasource\EntityInterface;
+use Cake\ORM\Behavior\CounterCacheBehavior;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -29,6 +30,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\TodoItem[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Cake\ORM\Behavior\TreeBehavior
+ * * @mixin \Cake\ORM\Behavior\CounterCacheBehavior
  */
 class TodoItemsTable extends Table
 {
@@ -47,7 +49,16 @@ class TodoItemsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Tree');
+        $this->addBehavior('Tree', [
+            'level' => 'level'
+        ]);
+        $this->addBehavior('CounterCache', [
+            'TodoLists' => [
+                'incomplete_item_count' => [
+                    'conditions' => ['TodoItems.is_completed' => false]
+                ]
+            ]
+        ]);
 
         $this->belongsTo('TodoLists', [
             'foreignKey' => 'todo_list_id',
@@ -68,17 +79,25 @@ class TodoItemsTable extends Table
      *
      * @return bool
      */
-    public function save(EntityInterface $entity, $options = []): bool
+    public function save(EntityInterface $entity, $options = [])
     {
         $oldScope = $this->getBehavior('Tree')->getConfig('scope');
         if ($entity->has('todo_list_id')) {
-            $this->getBehavior('Tree')->setConfig('scope', ['todo_list_id' => $entity->todo_list_id]);
+            $this->getBehavior('Tree')->setConfig('scope', [
+                'todo_list_id' => $entity->todo_list_id
+            ]);
         }
         $success = parent::save($entity, $options);
         $this->getBehavior('Tree')->setConfig('scope', $oldScope);
 
         return $success;
     }
+
+    public function toggleIsCompleted($id)
+    {
+        die('tgogle');
+    }
+
 
     /**
      * Default validation rules.
@@ -103,8 +122,8 @@ class TodoItemsTable extends Table
             ->allowEmptyString('notes');
 
         $validator
-            ->boolean('completed')
-            ->notEmptyString('completed');
+            ->boolean('is_completed')
+            ->notEmptyString('is_completed');
 
         $validator
             ->date('due_date')

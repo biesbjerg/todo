@@ -1,20 +1,7 @@
 <?php
 /**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
  * @var \App\View\AppView $this
  */
-
-$cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,36 +9,76 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+    <?php
+        echo $this->Html->css([
+            '/vendor/bootstrap/css/bootstrap.min',
+            'sidebar',
+            'default'
+        ]);
+    ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+
 </head>
 <body>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom">
+    <button class="navbar-toggler sidebar-toggle" type="button" aria-label="Toggle sidebar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/"><?= __('Todo') ?></a>
+</nav>
+
+    <div id="wrapper">
+
+        <!-- Todo Lists Sidebar -->
+        <aside id="sidebar-wrapper" class="bg-light border-right">
+            <ul class="nav flex-column nav-pills">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">My Day</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Planned</a>
+                </li>
+            </ul>
+            <hr class="my-2 mx-3">
+            <div class="todo-lists">
+                <?php
+                    echo $this->cell('TodoLists', [$this->request->getParam('list_id')])->render();
+                    echo $this->Html->link(__('+ Add list'), ['_name' => 'add_todo_list'], [
+                        'class' => [
+                            'btn',
+                            'btn-link',
+                            'btn-sm'
+                        ]
+                    ]);
+                ?>
+            </div>
+        </aside>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="p-2">
+            <?php
+                echo $this->Flash->render();
+                echo $this->fetch('content');
+            ?>
         </div>
-        <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/4/">API</a>
-        </div>
-    </nav>
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
-        </div>
-    </main>
-    <footer>
-    </footer>
+
+    </div>
+
+    <?php
+        echo $this->Html->script([
+            '/vendor/jquery/jquery.min',
+            '/vendor/bootstrap/js/bootstrap.min',
+            'default'
+        ]);
+        echo $this->fetch('script');
+    ?>
+
 </body>
 </html>

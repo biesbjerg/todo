@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Routing\Router;
+
 /**
  * TodoLists Controller
  *
@@ -18,9 +20,9 @@ class TodoListsController extends AppController
      */
     public function index()
     {
-        $todoLists = $this->paginate($this->TodoLists);
+        $hasTodoLists = (bool) $this->TodoLists->find()->count();
 
-        $this->set(compact('todoLists'));
+        $this->set(compact('hasTodoLists'));
     }
 
     /**
@@ -30,11 +32,24 @@ class TodoListsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
+    public function view($id = null, $slug = null)
     {
         $todoList = $this->TodoLists->get($id, [
-            'contain' => ['TodoItems'],
+            'contain' => [
+                'TodoItems' => [
+                    'sort' => ['lft' => 'ASC']
+                ]
+            ]
         ]);
+
+        // Check todo list is valid and being accessed via current slug
+        if ($todoList->slug !== $slug) {
+            return $this->redirect([
+                '_name' => 'view_todo_items',
+                'list_id' => $todoList->id,
+                'slug' => $todoList->slug
+            ]);
+        }
 
         $this->set(compact('todoList'));
     }
@@ -52,7 +67,11 @@ class TodoListsController extends AppController
             if ($this->TodoLists->save($todoList)) {
                 $this->Flash->success(__('The todo list has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect([
+                    '_name' => 'view_todo_items',
+                    'list_id' => $todoList->id,
+                    'slug' => $todoList->slug
+                ]);
             }
             $this->Flash->error(__('The todo list could not be saved. Please, try again.'));
         }
@@ -76,7 +95,11 @@ class TodoListsController extends AppController
             if ($this->TodoLists->save($todoList)) {
                 $this->Flash->success(__('The todo list has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect([
+                    '_name' => 'view_todo_items',
+                    'list_id' => $todoList->id,
+                    'slug' => $todoList->slug
+                ]);
             }
             $this->Flash->error(__('The todo list could not be saved. Please, try again.'));
         }
@@ -100,6 +123,6 @@ class TodoListsController extends AppController
             $this->Flash->error(__('The todo list could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['_name' => 'home']);
     }
 }

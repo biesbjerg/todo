@@ -10,7 +10,6 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property string $title
- * @property string|null $notes
  * @property string|null $color
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime|null $modified
@@ -30,7 +29,6 @@ class TodoList extends Entity
      */
     protected $_accessible = [
         'title' => true,
-        'notes' => true,
         'color' => true,
         'created' => true,
         'modified' => true,

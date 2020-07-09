@@ -4,23 +4,19 @@
  * @var \App\Model\Entity\TodoItem $todoItem
  */
 ?>
-<div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Todo Items'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
-    <div class="column-responsive column-80">
-        <div class="todoItems form content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1><?= h($todoList->title) ?></h1>
+
             <?= $this->Form->create($todoItem) ?>
             <fieldset>
                 <legend><?= __('Add Todo Item') ?></legend>
                 <?php
-                    echo $this->Form->control('todo_list_id', ['options' => $todoLists]);
+                    echo $this->Form->hidden('todo_list_id', ['value' => $todoList->id]);
                     echo $this->Form->control('title');
-                    echo $this->Form->control('notes');
-                    echo $this->Form->control('completed');
+                    echo $this->Form->control('notes', ['type' => 'textarea']);
+                    echo $this->Form->control('is_completed');
                     echo $this->Form->control('due_date', ['empty' => true]);
                     echo $this->Form->control('parent_id', ['options' => $parentTodoItems, 'empty' => true]);
                 ?>

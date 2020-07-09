@@ -44,18 +44,73 @@ use Cake\Routing\RouteBuilder;
 /** @var \Cake\Routing\RouteBuilder $routes */
 $routes->setRouteClass(DashedRoute::class);
 
-$routes->scope('/', function (RouteBuilder $builder) {
-    /*
-     * Here, we are connecting '/' (base path) to a controller called 'Pages',
-     * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, templates/Pages/home.php)...
-     */
-    $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+const ID_PATTERN = '[0-9]+';
+const SLUG_PATTERN = '[a-z0-9-]+';
 
-    /*
-     * ...and connect the rest of 'Pages' controller's URLs.
-     */
-    $builder->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+$routes->redirect('/', ['_name' => 'home']);
+
+$routes->scope('/', function (RouteBuilder $builder) {
+    $builder->connect(
+        '/lists',
+        ['controller' => 'TodoLists', 'action' => 'index'],
+        ['_name' => 'home']
+    );
+
+    $builder->connect(
+        '/lists/add',
+        ['controller' => 'TodoLists', 'action' => 'add'],
+        ['_name' => 'add_todo_list']
+    );
+
+    $builder->scope('/lists/{list_id}-{slug}', function (RouteBuilder $builder) {
+
+        // Lists
+        $builder
+            ->connect('/edit', ['controller' => 'TodoLists', 'action' => 'edit'], [
+                '_name' => 'edit_todo_list',
+                'persist' => ['list_id', 'slug']
+            ])
+            ->setPass(['list_id'])
+            ->setPatterns([
+                'list_id' => ID_PATTERN,
+                'slug' => SLUG_PATTERN
+            ]);
+
+        // Items
+        $builder
+            ->connect('/items', ['controller' => 'TodoLists', 'action' => 'view'], [
+                '_name' => 'view_todo_items',
+                'persist' => ['list_id', 'slug']
+            ])
+            ->setPass(['list_id', 'slug'])
+            ->setPatterns([
+                'list_id' => ID_PATTERN,
+                'slug' => SLUG_PATTERN
+            ]);
+
+        $builder
+            ->connect('/items/add', ['controller' => 'TodoItems', 'action' => 'add'], [
+                '_name' => 'add_todo_item',
+                'persist' => ['list_id', 'slug']
+            ])
+            ->setPass(['list_id'])
+            ->setPatterns([
+                'list_id' => ID_PATTERN,
+                'slug' => SLUG_PATTERN
+            ]);
+
+        $builder
+            ->connect('/items/{item_id}/edit', ['controller' => 'TodoItems', 'action' => 'edit'], [
+                '_name' => 'edit_todo_item',
+                'persist' => ['list_id', 'slug']
+            ])
+            ->setPass(['list_id', 'item_id'])
+            ->setPatterns([
+                'list_id' => ID_PATTERN,
+                'slug' => SLUG_PATTERN,
+                'item_id' => ID_PATTERN
+            ]);
+    });
 
     /*
      * Connect catchall routes for all controllers.

@@ -12,7 +12,7 @@ use Cake\ORM\Entity;
  * @property int $todo_list_id
  * @property string|null $title
  * @property string|null $notes
- * @property bool $completed
+ * @property bool $is_completed
  * @property \Cake\I18n\FrozenDate|null $due_date
  * @property int|null $parent_id
  * @property int|null $lft
@@ -39,7 +39,7 @@ class TodoItem extends Entity
         'todo_list_id' => true,
         'title' => true,
         'notes' => true,
-        'completed' => true,
+        'is_completed' => true,
         'due_date' => true,
         'parent_id' => true,
         'lft' => true,

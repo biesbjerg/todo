@@ -5,6 +5,7 @@ namespace App\Model\Table;
 
 use Cake\Datasource\EntityInterface;
 use Cake\ORM\Behavior\CounterCacheBehavior;
+use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -30,7 +31,7 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\TodoItem[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Cake\ORM\Behavior\TreeBehavior
- * * @mixin \Cake\ORM\Behavior\CounterCacheBehavior
+ * @mixin \Cake\ORM\Behavior\CounterCacheBehavior
  */
 class TodoItemsTable extends Table
 {
@@ -55,7 +56,9 @@ class TodoItemsTable extends Table
         $this->addBehavior('CounterCache', [
             'TodoLists' => [
                 'incomplete_item_count' => [
-                    'conditions' => ['TodoItems.is_completed' => false]
+                    'conditions' => [
+                        'TodoItems.is_completed' => false
+                    ]
                 ]
             ]
         ]);
@@ -93,9 +96,21 @@ class TodoItemsTable extends Table
         return $success;
     }
 
-    public function toggleIsCompleted($id)
+    public function findMyDay(Query $query, array $options): Query
     {
-        die('tgogle');
+        return $query
+            ->where(['show_in_my_day' => true])
+            ->order(['due_date' => 'ASC']);
+    }
+
+    public function findPlanned(Query $query, array $options): Query
+    {
+        return $query
+            ->where([
+                'is_completed' => false,
+                'due_date IS NOT' => null
+            ])
+            ->order(['due_date' => 'ASC']);
     }
 
 
@@ -124,6 +139,10 @@ class TodoItemsTable extends Table
         $validator
             ->boolean('is_completed')
             ->notEmptyString('is_completed');
+
+        $validator
+            ->boolean('show_in_my_day')
+            ->notEmptyString('show_in_my_day');
 
         $validator
             ->date('due_date')

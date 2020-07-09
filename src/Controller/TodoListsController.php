@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Cake\Routing\Router;
-
 /**
  * TodoLists Controller
  *
@@ -20,9 +18,20 @@ class TodoListsController extends AppController
      */
     public function index()
     {
-        $hasTodoLists = (bool) $this->TodoLists->find()->count();
+    }
 
-        $this->set(compact('hasTodoLists'));
+    public function myDay()
+    {
+        $todoItems = $this->TodoLists->TodoItems->find('myDay');
+
+        $this->set(compact('todoItems'));
+    }
+
+    public function planned()
+    {
+        $todoItems = $this->TodoLists->TodoItems->find('planned');
+
+        $this->set(compact('todoItems'));
     }
 
     /**

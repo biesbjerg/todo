@@ -1,0 +1,28 @@
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        {{
+            helper_Html_link(__('My Day'), {
+                '_name': 'view_my_day_todo_items'
+            }, {
+                'class': [
+                    'nav-link',
+                    'rounded-0',
+                    activeListId == 'myDay' ? 'active'
+                ]
+            })
+        }}
+    </li>
+    <li class="nav-item">
+        {{
+            helper_Html_link(__('Planned'), {
+                '_name': 'view_planned_todo_items'
+            }, {
+                'class': [
+                    'nav-link',
+                    'rounded-0',
+                    activeListId == 'planned' ? 'active'
+                ]
+            })
+        }}
+    </li>
+</ul>

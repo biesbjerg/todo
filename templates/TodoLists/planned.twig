@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>{{ __('Planned') }}</h1>
+            {% for todoItem in todoItems %}
+                <pre>{{ todoItem }}</pre>
+            {% endfor %}
+        </div>
+    </div>
+</div>

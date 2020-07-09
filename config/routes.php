@@ -57,13 +57,23 @@ $routes->scope('/', function (RouteBuilder $builder) {
     );
 
     $builder->connect(
+        '/my-day',
+        ['controller' => 'TodoLists', 'action' => 'my_day'],
+        ['_name' => 'view_my_day_todo_items']
+    );
+    $builder->connect(
+        '/planned',
+        ['controller' => 'TodoLists', 'action' => 'planned'],
+        ['_name' => 'view_planned_todo_items']
+    );
+
+    $builder->connect(
         '/lists/add',
         ['controller' => 'TodoLists', 'action' => 'add'],
         ['_name' => 'add_todo_list']
     );
 
     $builder->scope('/lists/{list_id}-{slug}', function (RouteBuilder $builder) {
-
         // Lists
         $builder
             ->connect('/edit', ['controller' => 'TodoLists', 'action' => 'edit'], [

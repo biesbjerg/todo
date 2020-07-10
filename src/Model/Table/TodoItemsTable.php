@@ -99,7 +99,10 @@ class TodoItemsTable extends Table
     public function findMyDay(Query $query, array $options): Query
     {
         return $query
-            ->where(['show_in_my_day' => true])
+            ->where([
+                'show_in_my_day' => true,
+                'is_completed' => false
+            ])
             ->order(['due_date' => 'ASC']);
     }
 
@@ -107,8 +110,8 @@ class TodoItemsTable extends Table
     {
         return $query
             ->where([
-                'is_completed' => false,
-                'due_date IS NOT' => null
+                'due_date IS NOT' => null,
+                'is_completed' => false
             ])
             ->order(['due_date' => 'ASC']);
     }

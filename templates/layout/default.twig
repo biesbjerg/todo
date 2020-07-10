@@ -29,17 +29,18 @@
     <div id="wrapper">
         <!-- Todo Lists Sidebar -->
         <aside id="sidebar-wrapper" class="bg-light border-right">
-            <nav class="dynamic-todo-lists">
+            <h4 class="mx-3 my-2">{{ __('Lists') }}</h4>
+            <nav class="sidebar-todo-lists">
                 {{ cell('DynamicTodoLists', [_view.request.getParam('action')]) }}
             </nav>
             <hr class="mx-3 my-2">
-            <nav class="todo-lists">
+            <nav class="sidebar-todo-lists">
                 {{ cell('TodoLists', [_view.request.getParam('list_id')]) }}
                 {{
                     helper_Html_link(__('+ Add list'), {
                         '_name': 'add_todo_list'
                     }, {
-                        'class': ['btn', 'btn-link', 'btn-sm', 'mx-2', 'my-2']
+                        'class': ['btn', 'btn-link', 'btn-sm', 'text-dark', 'mx-2', 'my-2']
                     })
                 }}
             </nav>

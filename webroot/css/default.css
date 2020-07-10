@@ -1,0 +1,14 @@
+/* Sidebar */
+.sidebar-todo-lists .badge-pill {
+    color: #f2f2f2;
+}
+
+.sidebar-todo-lists .nav-link {
+    color: #343a40;
+    border-radius: 0;
+}
+
+.sidebar-todo-lists .nav-link.active {
+    color: #fff;
+    background-color: #343a40;
+}

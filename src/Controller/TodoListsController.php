@@ -123,6 +123,6 @@ class TodoListsController extends AppController
             $this->Flash->error(__('The todo list could not be deleted. Please, try again.'));
         }
 
-        return $this->redirect(['_name' => 'home']);
+        return $this->redirect(['_name' => 'view_my_day_todo_items']);
     }
 }

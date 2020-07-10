@@ -16,7 +16,6 @@ declare(strict_types=1);
 namespace App\View;
 
 use BootstrapUI\View\UIViewTrait;
-use Cake\Core\Configure;
 use Cake\TwigView\View\TwigView;
 
 /**

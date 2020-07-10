@@ -1,10 +1,10 @@
-{% do _view.assign('title', __('My Day')) %}
+{% do _view.assign('title', title) %}
 
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <h1>{{ __('My Day') }}</h1>
-            <small>{{ __('This is a list of items that you have added to "My Day".') }}</small>
+            <h1>{{ title }}</h1>
+            <small>{{ notes }}</small>
             {% for todoItem in todoItems %}
                 <div class="row flex-nowrap py-2 border-bottom">
                     <div class="col-auto pr-0">

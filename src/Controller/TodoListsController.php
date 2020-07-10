@@ -45,7 +45,7 @@ class TodoListsController extends AppController
         // Check todo list is being accessed via correct slug
         if ($todoList->slug !== $slug) {
             return $this->redirect([
-                '_name' => 'view_todo_items',
+                '_name' => 'view_todo_list',
                 'list_id' => $todoList->id,
                 'slug' => $todoList->slug
             ]);
@@ -68,7 +68,7 @@ class TodoListsController extends AppController
                 $this->Flash->success(__('The todo list has been saved.'));
 
                 return $this->redirect([
-                    '_name' => 'view_todo_items',
+                    '_name' => 'view_todo_list',
                     'list_id' => $todoList->id,
                     'slug' => $todoList->slug
                 ]);
@@ -96,7 +96,7 @@ class TodoListsController extends AppController
                 $this->Flash->success(__('The todo list has been saved.'));
 
                 return $this->redirect([
-                    '_name' => 'view_todo_items',
+                    '_name' => 'view_todo_list',
                     'list_id' => $todoList->id,
                     'slug' => $todoList->slug
                 ]);

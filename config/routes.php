@@ -47,19 +47,19 @@ $routes->setRouteClass(DashedRoute::class);
 const ID_PATTERN = '[0-9]+';
 const SLUG_PATTERN = '[a-z0-9-]+';
 
-$routes->redirect('/', ['controller' => 'TodoLists', 'action' => 'my_day']);
+$routes->redirect('/', ['controller' => 'SmartTodoLists', 'action' => 'view', 'my-day']);
 
 $routes->scope('/', function (RouteBuilder $builder) {
-    $builder->connect(
-        '/my-day',
-        ['controller' => 'TodoLists', 'action' => 'my_day'],
-        ['_name' => 'view_my_day_todo_items']
-    );
-    $builder->connect(
-        '/planned',
-        ['controller' => 'TodoLists', 'action' => 'planned'],
-        ['_name' => 'view_planned_todo_items']
-    );
+    $builder
+        ->connect(
+            '/lists/{smart_list_id}',
+            ['controller' => 'SmartTodoLists', 'action' => 'view'],
+            ['_name' => 'view_smart_todo_list']
+        )
+        ->setPass(['smart_list_id'])
+        ->setPatterns([
+            'smart_list_id' => 'my-day|planned'
+        ]);
 
     $builder->connect(
         '/lists/add',
@@ -68,7 +68,17 @@ $routes->scope('/', function (RouteBuilder $builder) {
     );
 
     $builder->scope('/lists/{list_id}-{slug}', function (RouteBuilder $builder) {
-        // Lists
+        $builder
+            ->connect('/', ['controller' => 'TodoLists', 'action' => 'view'], [
+                '_name' => 'view_todo_list',
+                'persist' => ['list_id', 'slug']
+            ])
+            ->setPass(['list_id', 'slug'])
+            ->setPatterns([
+                'list_id' => ID_PATTERN,
+                'slug' => SLUG_PATTERN
+            ]);
+
         $builder
             ->connect('/edit', ['controller' => 'TodoLists', 'action' => 'edit'], [
                 '_name' => 'edit_todo_list',
@@ -81,17 +91,6 @@ $routes->scope('/', function (RouteBuilder $builder) {
             ]);
 
         // Items
-        $builder
-            ->connect('/items', ['controller' => 'TodoLists', 'action' => 'view'], [
-                '_name' => 'view_todo_items',
-                'persist' => ['list_id', 'slug']
-            ])
-            ->setPass(['list_id', 'slug'])
-            ->setPatterns([
-                'list_id' => ID_PATTERN,
-                'slug' => SLUG_PATTERN
-            ]);
-
         $builder
             ->connect('/items/add', ['controller' => 'TodoItems', 'action' => 'add'], [
                 '_name' => 'add_todo_item',

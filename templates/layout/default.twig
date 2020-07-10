@@ -31,7 +31,7 @@
         <aside id="sidebar-wrapper" class="bg-light border-right">
             <h4 class="mx-3 my-2">{{ __('Lists') }}</h4>
             <nav class="sidebar-todo-lists">
-                {{ cell('DynamicTodoLists', [_view.request.getParam('action')]) }}
+                {{ cell('SmartTodoLists', [_view.request.getParam('smart_list_id')]) }}
             </nav>
             <hr class="mx-3 my-2">
             <nav class="sidebar-todo-lists">

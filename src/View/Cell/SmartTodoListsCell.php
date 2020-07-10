@@ -6,9 +6,9 @@ namespace App\View\Cell;
 use Cake\View\Cell;
 
 /**
- * DynamicTodoLists cell
+ * SmartTodoLists cell
  */
-class DynamicTodoListsCell extends Cell
+class SmartTodoListsCell extends Cell
 {
     /**
      * List of valid options that can be passed into this
@@ -38,15 +38,13 @@ class DynamicTodoListsCell extends Cell
 
         $todoLists = [
             [
-                'id' => 'myDay',
+                'id' => 'my-day',
                 'title' => __('My Day'),
-                'url' => 'view_my_day_todo_items',
                 'incomplete_item_count' => $this->TodoItems->find('myDay')->count()
             ],
             [
                 'id' => 'planned',
                 'title' => __('Planned'),
-                'url' => 'view_planned_todo_items',
                 'incomplete_item_count' => $this->TodoItems->find('planned')->count()
             ]
         ];

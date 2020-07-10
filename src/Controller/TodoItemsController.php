@@ -29,7 +29,7 @@ class TodoItemsController extends AppController
                 $this->Flash->success(__('The todo item has been saved.'));
 
                 return $this->redirect([
-                    '_name' => 'view_todo_items',
+                    '_name' => 'view_todo_list',
                     'list_id' => $todoList->id,
                     'slug' => $todoList->slug
                 ]);
@@ -65,7 +65,7 @@ class TodoItemsController extends AppController
                 $this->Flash->success(__('The todo item has been saved.'));
 
                 return $this->redirect([
-                    '_name' => 'view_todo_items',
+                    '_name' => 'view_todo_list',
                     'list_id' => $todoList->id,
                     'slug' => $todoList->slug
                 ]);
@@ -106,7 +106,7 @@ class TodoItemsController extends AppController
         }
 
         return $this->redirect([
-            '_name' => 'view_todo_items',
+            '_name' => 'view_todo_list',
             'list_id' => $todoItem->todo_list->id,
             'slug' => $todoItem->todo_list->slug
         ]);

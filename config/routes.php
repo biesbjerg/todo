@@ -23,6 +23,7 @@
 
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
 
 /*
  * The default class to use for all routes
@@ -47,7 +48,7 @@ $routes->setRouteClass(DashedRoute::class);
 const ID_PATTERN = '[0-9]+';
 const SLUG_PATTERN = '[a-z0-9-]+';
 
-$routes->redirect('/', ['controller' => 'SmartTodoLists', 'action' => 'view', 'my-day']);
+$routes->redirect('/', ['controller' => 'SmartTodoLists', 'action' => 'view', 'smart_list_id' => 'my-day']);
 
 $routes->scope('/', function (RouteBuilder $builder) {
     $builder

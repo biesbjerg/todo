@@ -1,3 +1,5 @@
+{% do _view.assign('title', todoList.title ~ ' - ' ~ __('Add item')) %}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col">
@@ -5,13 +7,13 @@
             {{ helper_Form_create(todoItem) }}
             <fieldset>
                 <legend>{{ __('Add item') }}</legend>
-                {{ helper_Form_hidden(__('todo_list_id'), {'value': todoList.id}) }}
-                {{ helper_Form_control(__('title')) }}
-                {{ helper_Form_control(__('notes'), {type: 'textarea'}) }}
-                {{ helper_Form_control(__('show_in_my_day')) }}
-                {{ helper_Form_control(__('due_date'), {'empty': true}) }}
-                {{ helper_Form_control(__('is_completed')) }}
-                {{ helper_Form_control(__('parent_id'), {'empty': true, 'options': parentTodoItems}) }}
+                {{ helper_Form_hidden('todo_list_id', {'value': todoList.id}) }}
+                {{ helper_Form_control('title') }}
+                {{ helper_Form_control('notes', {type: 'textarea'}) }}
+                {{ helper_Form_control('show_in_my_day') }}
+                {{ helper_Form_control('due_date', {'empty': true}) }}
+                {{ helper_Form_control('is_completed') }}
+                {{ helper_Form_control('parent_id', {'empty': true, 'options': parentTodoItems}) }}
             </fieldset>
             {{ helper_Form_button(__('Submit')) }}
             {{ helper_Form_end() }}

@@ -11,15 +11,6 @@ namespace App\Controller;
  */
 class TodoListsController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null|void Renders view
-     */
-    public function index()
-    {
-    }
-
     public function myDay()
     {
         $todoItems = $this->TodoLists->TodoItems->find('myDay');

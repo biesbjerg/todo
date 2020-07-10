@@ -1,11 +1,13 @@
+{% do _view.assign('title', todoList.title ~ ' - ' ~ __('Edit list')) %}
+
 <div class="container-fluid">
     <div class="row">
         <div class="col">
             {{ helper_Form_create(todoList) }}
             <fieldset>
                 <legend>{{ __('Edit list') }}</legend>
-                {{ helper_Form_control(__('title')) }}
-                {{ helper_Form_control(__('color'), {'type': 'color'}) }}
+                {{ helper_Form_control('title') }}
+                {{ helper_Form_control('color', {'type': 'color'}) }}
             </fieldset>
             {{ helper_Form_button(__('Submit')) }}
             {{ helper_Form_end() }}

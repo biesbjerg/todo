@@ -21,7 +21,9 @@
         <button class="navbar-toggler sidebar-toggle" type="button" aria-label="Toggle sidebar">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/">{{ __('Todo') }}</a>
+        <a class="navbar-brand" href="/">
+            {{ fetch('title') }}
+        </a>
     </nav>
 
     <div id="wrapper">
@@ -52,10 +54,9 @@
 
     {{
         helper_Html_script([
-            '/vendor/jquery/jquery.min',
-            '/vendor/bootstrap/js/bootstrap.min',
+            '/vendor/jquery/jquery.slim.min',
             'default'
-        ], {'block': true})
+        ])
     }}
     {{ fetch ('script') }}
 

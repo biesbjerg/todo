@@ -47,15 +47,9 @@ $routes->setRouteClass(DashedRoute::class);
 const ID_PATTERN = '[0-9]+';
 const SLUG_PATTERN = '[a-z0-9-]+';
 
-$routes->redirect('/', ['_name' => 'home']);
+$routes->redirect('/', ['controller' => 'TodoLists', 'action' => 'my_day']);
 
 $routes->scope('/', function (RouteBuilder $builder) {
-    $builder->connect(
-        '/lists',
-        ['controller' => 'TodoLists', 'action' => 'index'],
-        ['_name' => 'home']
-    );
-
     $builder->connect(
         '/my-day',
         ['controller' => 'TodoLists', 'action' => 'my_day'],

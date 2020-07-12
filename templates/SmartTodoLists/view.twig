@@ -22,23 +22,29 @@
                         {{ helper_Form_end() }}
                     </div>
                     <div class="col">
-                        <div style="text-indent: {{ todoItem.level }}em">
-                            {% if todoItem.is_completed %}
-                                <del>{{ todoItem.title }}</del>
-                            {% else %}
+
+                        {% if todoItem.is_completed %}
+                            <del>
+                        {% endif %}
+
+                            <div style="text-indent: {{ todoItem.level }}em">
                                 {{ todoItem.title }}
+                            </div>
+                            {% if todoItem.notes is defined %}
+                                <small class="d-block text-secondary">
+                                    {{ todoItem.notes }}
+                                </small>
                             {% endif %}
-                        </div>
-                        {% if todoItem.notes is defined %}
-                            <small class="d-block text-secondary">
-                                {{ todoItem.notes }}
-                            </small>
+                            {% if todoItem.due_date is defined %}
+                                <span class="badge badge-info">
+                                    {{ todoItem.due_date }}
+                                </span>
+                            {% endif %}
+
+                        {% if todoItem.is_completed %}
+                            </del>
                         {% endif %}
-                        {% if todoItem.due_date is defined %}
-                            <span class="badge badge-info">
-                                {{ todoItem.due_date }}
-                            </span>
-                        {% endif %}
+
                     </div>
                 </div>
             {% else %}

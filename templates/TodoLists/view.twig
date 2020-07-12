@@ -57,6 +57,16 @@
                                 {{ todoItem.title }}
                             {% endif %}
                         </div>
+                        {% if todoItem.notes is defined %}
+                            <small class="d-block text-secondary">
+                                {{ todoItem.notes }}
+                            </small>
+                        {% endif %}
+                        {% if todoItem.due_date is defined %}
+                            <span class="badge badge-info">
+                                {{ todoItem.due_date }}
+                            </span>
+                        {% endif %}
                     </div>
                     <div class="col text-right">
                         {{

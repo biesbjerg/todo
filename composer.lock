@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "964b61f1d280bff548d6f144612a08bf",
+    "content-hash": "49531b843f29ea92bc6ee4cb772aea2f",
     "packages": [
         {
             "name": "aura/intl",
@@ -845,16 +845,16 @@
         },
         {
             "name": "muffin/slug",
-            "version": "2.0.0-beta",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UseMuffin/Slug.git",
-                "reference": "cfa5a55f9f9ddedb42400104cfa192eb0a810872"
+                "reference": "3e80ad8a2081fffb5c12d1638b8a77aa28f5327c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UseMuffin/Slug/zipball/cfa5a55f9f9ddedb42400104cfa192eb0a810872",
-                "reference": "cfa5a55f9f9ddedb42400104cfa192eb0a810872",
+                "url": "https://api.github.com/repos/UseMuffin/Slug/zipball/3e80ad8a2081fffb5c12d1638b8a77aa28f5327c",
+                "reference": "3e80ad8a2081fffb5c12d1638b8a77aa28f5327c",
                 "shasum": ""
             },
             "require": {
@@ -899,7 +899,7 @@
                 "orm",
                 "slug"
             ],
-            "time": "2019-12-18T14:45:44+00:00"
+            "time": "2020-07-07T17:39:55+00:00"
         },
         {
             "name": "psr/container",
@@ -5671,7 +5671,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "friendsofcake/bootstrap-ui": 10,
-        "muffin/slug": 10,
         "psy/psysh": 0
     },
     "prefer-stable": true,

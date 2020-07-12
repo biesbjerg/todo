@@ -13,7 +13,7 @@
         "components/jquery": "^3.5",
         "friendsofcake/bootstrap-ui": "3.0.0-beta5",
         "mobiledetect/mobiledetectlib": "^2.8",
-        "muffin/slug": "2.0.0-beta",
+        "muffin/slug": "2.0.0",
         "twbs/bootstrap": "^4.5"
     },
     "require-dev": {
